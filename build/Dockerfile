@@ -11,9 +11,6 @@ RUN apt-get update && \
         git \
         wget
 
-WORKDIR /opt/magnetter
-COPY ./src/requirements.txt /opt/observer
-RUN pip install -r src/requirements.txt
-
-WORKDIR /var/tmp/src
-
+COPY ./build/requirements.txt /tmp
+RUN pip install -r /tmp/requirements.txt && \
+    rm /tmp/requirements.txt
